@@ -1,4 +1,4 @@
 def call() {
-    echo "Building application..."
-    sh "mvn clean package -DskipTests"
+    echo "⚙️ Building WAR with Maven..."
+    sh "mvn clean package"
 }
