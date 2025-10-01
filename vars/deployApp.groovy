@@ -1,14 +1,8 @@
-def call(String warFile, String tomcatPath) {
-    echo "Deploying WAR file from ${warFile} to Tomcat at ${tomcatPath}..."
-
+def call(String warName = "my-java-project-1.0-SNAPSHOT.war") {
+    echo "🚀 Deploying WAR to Tomcat..."
     sh """
-        # Stop Tomcat if running
-        sudo systemctl stop tomcat || true
-
-        # Copy WAR file
-        sudo cp ${warFile} ${tomcatPath}/
-
-        # Start Tomcat
-        sudo systemctl start tomcat
+        sudo cp target/${warName} /opt/tomcat/webapps/ROOT.war
+        sudo /opt/tomcat/bin/shutdown.sh || true
+        sudo /opt/tomcat/bin/startup.sh
     """
 }
